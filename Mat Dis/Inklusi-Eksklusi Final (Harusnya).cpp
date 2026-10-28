@@ -405,12 +405,14 @@ int main(){
             else break;
         }
 
-        if (jenis == 1) DuaHimpunan();
-        else if (jenis == 2) TigaHimpunan();
-        else if (jenis == 3) RentangBilangan();
-        else if (jenis == 4){
-            cout << "\nTerima Kasih Telah Menggunakan Proggram Ini :)\n";
-            return 0;
+        switch(jenis) {
+            case 1 : DuaHimpunan(); break;
+            case 2 : TigaHimpunan(); break;
+            case 3 : RentangBilangan(); break;
+            case 4 : {
+                cout << "\nTerima Kasih Telah Menggunakan Program Ini :)\n";
+                return 0;
+            }
         }
     }
 }
