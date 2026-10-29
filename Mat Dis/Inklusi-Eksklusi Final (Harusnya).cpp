@@ -245,10 +245,10 @@ int jumlahHabisBagi(long long d){
     return akhir / d - (awal - 1) / d;
 }
 
-// Mencetak satu langkah penjelasan: judul, arti (boleh kosong), rumus, substitusi, dan hasil
+// Mencetak satu langkah penjelasan: judul, rumus, substitusi, dan hasil
 void langkahRentang(const string& judul, const string& arti, const string& rumus, const string& substitusi, int hasil){
     cout << CYAN << ++langkah << ". " << judul << RESET << endl;
-    if (arti != "") cout << "   Artinya   : " << arti << endl;
+    cout << "   Artinya   : " << arti << endl;
     cout << "   Rumus     : " << rumus << endl;
     cout << "   Substitusi: " << substitusi << " = " << hasil << endl << endl;
 }
@@ -320,8 +320,8 @@ void RentangBilangan(){
     cout << "Pemisalan:\n";
     for (int i = 0; i < banyak; i++)
         cout << "  " << (char)('A' + i) << " = bilangan yang habis dibagi " << p[i] << (i < jP ? "   (pembagi)" : "   (dilarang)") << endl;
-    cout << "\nBanyak bilangan yang habis dibagi d di rentang " << awal << " sampai " << akhir << " dihitung dengan:\n"
-         << "  (banyak kelipatan d dari 1 sampai akhir) - (banyak kelipatan d sebelum awal)\n\n";
+    cout << "\nBanyak bilangan yang habis dibagi syarat di rentang " << awal << " sampai " << akhir << " dihitung dengan:\n"
+         << "  (banyak kelipatan syarat dari 1 sampai akhir) - (banyak kelipatan syarat sebelum awal)\n\n";
 
     // Langkah dasar: N, A, B
     int N = akhir - awal + 1;
