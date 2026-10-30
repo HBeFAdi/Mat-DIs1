@@ -13,7 +13,8 @@
 using namespace std;
 
 int langkah = 0; // nomor langkah penyelesaian (di-reset setiap soal baru)
-
+// Data soal rentang bilangan (diisi oleh RentangBilangan, dipakai oleh jumlahHabisBagi)
+int awal = 1, akhir = 1;    // rentang bilangan: awal sampai akhir
 // Hasil akhir perhitungan disimpan di sini, lalu ditampilkan oleh DuaHimpunan / TigaHimpunan
 vector<int> hasil2himpunan (9);
 vector<int> hasil3himpunan (15);
@@ -237,9 +238,6 @@ void TigaHimpunan(){
     tampilkanHasil(nama, hasil3himpunan);
 }
 
-// Data soal rentang bilangan (diisi oleh RentangBilangan, dipakai oleh jumlahHabisBagi)
-int awal = 1, akhir = 1;    // rentang bilangan: awal sampai akhir
-
 // Banyak bilangan di rentang awal..akhir yang habis dibagi d
 int jumlahHabisBagi(long long d){
     return akhir / d - (awal - 1) / d;
@@ -320,9 +318,8 @@ void RentangBilangan(){
     cout << "Pemisalan:\n";
     for (int i = 0; i < banyak; i++)
         cout << "  " << (char)('A' + i) << " = bilangan yang habis dibagi " << p[i] << (i < jP ? "   (pembagi)" : "   (dilarang)") << endl;
-    cout << "\nBanyak bilangan yang habis dibagi syarat di rentang " << awal << " sampai " << akhir << " dihitung dengan:\n"
-         << "  (banyak kelipatan syarat dari 1 sampai akhir) - (banyak kelipatan syarat sebelum awal)\n\n";
-
+    cout << endl;
+    
     // Langkah dasar: N, A, B
     int N = akhir - awal + 1;
     langkahRentang("Mencari |N|", "banyak seluruh bilangan dari " + to_string(awal) + " sampai " + to_string(akhir),
