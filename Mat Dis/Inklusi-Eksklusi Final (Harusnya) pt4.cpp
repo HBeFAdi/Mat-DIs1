@@ -48,7 +48,7 @@ int InputValid(string kalimat, string error, int a, int b){
 
 void Permisalan(int n){
     vector<string> misal(n);
-    cout << "Misalkan : \n";
+    cout << "\nMisalkan : \n";
     for (int i = 0; i < n; i++){
         cout << "  " << (char)('A'+i) << " = "; getline(cin, misal[i]);
     } 
@@ -67,7 +67,6 @@ void JawabanHimpunan(vector<string> nama, vector<int> v, int banyak){
             cout << ke << ". "<< blmDiket.back() << endl;
         }
     }
-
     while (true){
         cari = InputValid("\nYang ingin dicari (0 untuk kembali) : ", "Input tidak valid karena diluar Pilihan!", 0, (int)blmDiket.size());
         cout << "Jawaban : ";
@@ -83,24 +82,24 @@ void Hitung2Himpunan(vector<int> v){
 
     while (v != old){
         old = v;
-        if (!ada(N) && ada(AuB, AuBc)) N = AuB + AuBc;
-        if (!ada(A) && ada(AuB, AnB, B)) A = AuB + AnB - B;
-        if (!ada(B) && ada(AuB, AnB, A)) B = AuB + AnB - A;
-        if (!ada(AnB) && ada(A, B, AuB)) AnB = A + B - AuB;
-        if (!ada(AuB)){
+        if (!ada(N) && ada(AuB, AuBc)) N = AuB + AuBc;      // Mencari N
+        if (!ada(A) && ada(AuB, AnB, B)) A = AuB + AnB - B; // Mencari A
+        if (!ada(B) && ada(AuB, AnB, A)) B = AuB + AnB - A; // Mencari B
+        if (!ada(AnB) && ada(A, B, AuB)) AnB = A + B - AuB; // Mencari A n B
+        if (!ada(AuB)){                                     // Mencari A u B
             if (ada(A, B, AnB)) AuB = A + B - AnB;
             else if (ada(N, AuBc)) AuB = N - AuBc;
-        }
-        if (!ada(AuBc) && ada(N, AuB)) AuBc = N - AuB;
-        if (!ada(hA)){
+        }   
+        if (!ada(AuBc) && ada(N, AuB)) AuBc = N - AuB;      // Mencari (A u B) ^c
+        if (!ada(hA)){                                      // Mencari hanya A
             if (ada(A, AnB)) hA = A - AnB;
             else if (ada(AuB, B)) hA = AuB - B;
         }
-        if (!ada(hB)){
+        if (!ada(hB)){                                      // Mencari hanya B
             if (ada(B, AnB)) hB = B - AnB;
             else if (ada(AuB, A)) hB = AuB - A;
         }
-        if (!ada(Xor)){
+        if (!ada(Xor)){                                     // Mencari tepat 1 himpunan atau A Xor B
             if (ada(hA, hB)) Xor = hA + hB;
             else if (ada(AuB, AnB)) Xor = AuB - AnB;
         }
@@ -115,32 +114,36 @@ void Hitung3Himpunan(vector<int> v){
 
     while (v != old){
         old = v;
-        if (!ada(AnB) && ada(AuBuC, A, B, C, AnC, BnC, AnBnC)) AnB = A + B + C - AnC - BnC + AnBnC - AuBuC;
-        if (!ada(AnC) && ada(AuBuC, A, B, C, AnB, BnC, AnBnC)) AnC = A + B + C - AnB - BnC + AnBnC - AuBuC;
-        if (!ada(BnC) && ada(AuBuC, A, B, C, AnB, AnC, AnBnC)) BnC = A + B + C - AnB - AnC + AnBnC - AuBuC;
-        if (!ada(AnBnC) && ada(AuBuC, A, B, C, AnB, AnC, BnC)) AnBnC = AuBuC - A - B - C + AnB + AnC + BnC;
-        if (!ada(AuBuC)){
+        if (!ada(N) && ada(AuBuC, AuBuCc)) N = AuBuC + AuBuCc;                                              // Mencari N
+        if (!ada(A) && ada(AuBuC, B, C, AnB, AnC, BnC, AnBnC)) A = AuBuC - B - C + AnB + AnC + BnC - AnBnC; // Mencari A
+        if (!ada(B) && ada(AuBuC, A, C, AnB, AnC, BnC, AnBnC)) B = AuBuC - A - C + AnB + AnC + BnC - AnBnC; // Mencari B
+        if (!ada(C) && ada(AuBuC, A, B, AnB, AnC, BnC, AnBnC)) C = AuBuC - A - B + AnB + AnC + BnC - AnBnC; // Mencari C
+        if (!ada(AnB) && ada(AuBuC, A, B, C, AnC, BnC, AnBnC)) AnB = A + B + C - AnC - BnC + AnBnC - AuBuC; // Mencari A n B
+        if (!ada(AnC) && ada(AuBuC, A, B, C, AnB, BnC, AnBnC)) AnC = A + B + C - AnB - BnC + AnBnC - AuBuC; // Mencari A n C
+        if (!ada(BnC) && ada(AuBuC, A, B, C, AnB, AnC, AnBnC)) BnC = A + B + C - AnB - AnC + AnBnC - AuBuC; // Mencari B n C
+        if (!ada(AnBnC) && ada(AuBuC, A, B, C, AnB, AnC, BnC)) AnBnC = AuBuC - A - B - C + AnB + AnC + BnC; // Mencari A n B n C
+        if (!ada(AuBuC)){                                                                                   // Mencari A u B u C
             if (ada(A, B, C, AnB, AnC, BnC, AnBnC)) AuBuC = A + B + C - AnB - AnC - BnC + AnBnC;
             else if (ada(N, AuBuCc)) AuBuC = N - AuBuCc;
-        }
-        if (!ada(AuBuCc) && ada(N, AuBuC)) AuBuCc = N - AuBuC;
-        if (!ada(hA)){
+        }                                                                                                    
+        if (!ada(AuBuCc) && ada(N, AuBuC)) AuBuCc = N - AuBuC;                                              // Mencari (A u B u C) ^c
+        if (!ada(hA)){                                                                                      // Mencari hanya A
             if (ada(A, AnB, AnC, AnBnC)) hA = A - AnB - AnC + AnBnC;
             else if (ada(AuBuC, B, C, BnC)) hA = AuBuC - B - C + BnC;
-        }
-        if (!ada(hB)){
+        }   
+        if (!ada(hB)){                                                                                      // Mencari hanya B
             if (ada(B, AnB, BnC, AnBnC)) hB = B - AnB - BnC + AnBnC;
             else if (ada(AuBuC, A, C, AnC)) hB = AuBuC - A - C + AnC;
         }
-        if (!ada(hC)){
+        if (!ada(hC)){                                                                                      // Mencari hanya C
             if (ada(C, AnC, BnC, AnBnC)) hC = C - AnC - BnC + AnBnC;
             else if (ada(AuBuC, A, B, AnB)) hC = AuBuC - A - B + AnB;
         }
-        if (!ada(tpt2)){
+        if (!ada(tpt2)){                                                                                    // Mencari tepat 2 himpunan
             if (ada(AnB, AnC, BnC, AnBnC)) tpt2 = AnB + AnC + BnC - 3 * AnBnC;
             else if (ada(AuBuC, tpt1, AnBnC)) tpt2 = AuBuC - tpt1 - AnBnC;
         }
-        if (!ada(tpt1)){
+        if (!ada(tpt1)){                                                                                    // Mencari tepat 1 himpunan
             if (ada(hA, hB, hC)) tpt1 = hA + hB + hC;
             else if (ada(AuBuC, A, B, C, AnBnC)) tpt1 = 2 * AuBuC - (A + B + C) + AnBnC;
             else if (ada(AuBuC, AnB, AnC, BnC, AnBnC)) tpt1 = AuBuC - AnB - AnC - BnC + 2 * AnBnC;
@@ -187,7 +190,7 @@ void HabiDibagi(int banyak){
     vector<int> v;
     int opsi, subopsi, jawab;
 
-    awal = InputValid("\nMasukan angka batas bawah : ","Input tidak valid. Harus lebih dari nol!", 0, maxint);
+    awal = InputValid("\nMasukan angka batas bawah : ","Input tidak valid. Harus lebih dari nol!", 1, maxint);
     akhir = InputValid("Masukan angka batas atas : ","Input tidak valid. Harus lebih dari batas bawah!", awal, maxint);
 
     if (banyak == 2){
@@ -209,10 +212,17 @@ void HabiDibagi(int banyak){
     cout << endl;
     for (int i = 0; i < banyak; i++) p.pb(InputValid("Angka Pembagi ke-" + to_string(i+1) + " : ","Input tidak valid. Masukkan bilangan bulat >= 1", 1, maxint));
 
+    // N, A, B kita masukan ke vector v terlebih dahulu karena baik 2 atau 3 himpunan memiliki ketiga variabel tersebut
+    // di index yang sama yaitu (0, 1, 2).
+    // A n B juga ada di kedua jenis himpunan, tetapi posisinya berbeda:
+    // di 2 himpunan A n B ada di index 3, sedangkan di 3 himpunan ada di index 4 karena index 3 dipakai untuk C.
+    // Karena posisinya yang berbeda, A n B tidak kami masukkan terlebih dahulu.
     for (int i = 0; i < 3; i++) i == 0 ? v.pb(akhir - awal + 1) : v.pb(JumlahHabisBagi(p[i-1]));
+
     if (banyak == 2){
         const int &N = h2[0], &AnB = h2[3], &AuB = h2[4], &AuBc = h2[5], &hA = h2[6], &Xor = h2[8];
-
+        
+        // Masukan A n B ke vector v dan karena Hitung2Himpunan butuh 9 data, sisanya kita beri nilai -1(tidak diketahui)
         for (int i = 0; i < 6; i++) i == 0 ? v.pb(JumlahHabisBagi(kpk(p[0],p[1]))) : v.pb(-1);
 
         Hitung2Himpunan(v);
@@ -227,12 +237,12 @@ void HabiDibagi(int banyak){
         const int &AuBuC = h3[8], &AuBuCc = h3[9], &hA = h3[10];
         for (int i = 0; i < 12; i++){
             switch(i){
-                case 0 : v.pb(JumlahHabisBagi(p[2])); break;
-                case 1 : v.pb(JumlahHabisBagi(kpk(p[0],p[1]))); break;
-                case 2 : v.pb(JumlahHabisBagi(kpk(p[0],p[2]))); break;
-                case 3 : v.pb(JumlahHabisBagi(kpk(p[1],p[2]))); break;
-                case 4 : v.pb(JumlahHabisBagi(kpk(kpk(p[0],p[1]),p[2]))); break;
-                default : v.pb(-1);
+                case 0 : v.pb(JumlahHabisBagi(p[2])); break;                     // Masukan C ke vector v
+                case 1 : v.pb(JumlahHabisBagi(kpk(p[0],p[1]))); break;           // Masukan A n B ke vector v
+                case 2 : v.pb(JumlahHabisBagi(kpk(p[0],p[2]))); break;           // Masukan A n C ke vector v
+                case 3 : v.pb(JumlahHabisBagi(kpk(p[1],p[2]))); break;           // Masukan B n C ke vector v
+                case 4 : v.pb(JumlahHabisBagi(kpk(kpk(p[0],p[1]),p[2]))); break; // Masukan A n B n C ke vector v
+                default : v.pb(-1);                                              // Karena Hitung3Himpunan butuh 15 data, sisanya kita beri nilai -1(tidak diketahui)
             }
         }
         Hitung3Himpunan(v);
@@ -243,7 +253,6 @@ void HabiDibagi(int banyak){
             case 4 : subopsi == 1 ? jawab = A - AnBnC : jawab = hA; break;
         }
     }
-
     cout << "\nBanyak bilangan yang memenuhi semua syarat = " << jawab;
     cout << "\nPress Any Key to Continue..."; _getch();
 }
@@ -251,9 +260,9 @@ void HabiDibagi(int banyak){
 int main(){
     while (true){
         system("cls");
-        cout << "----------------------------------------------\n";
-        cout << "   PROGRAM MENGHITUNG SOAL INKLUSI EKSKLUSI   \n";
-        cout << "----------------------------------------------\n\n";
+        cout << "--------------------------------------------------\n";
+        cout << "     PROGRAM MENGHITUNG SOAL INKLUSI EKSKLUSI     \n";
+        cout << "--------------------------------------------------\n\n";
 
         string soal;
         cout << "Masukan Soal (ketik 0 untuk keluar dari program) : \n";
@@ -266,9 +275,9 @@ int main(){
         else if (banyak == 2) DuaHimpunan();
         else TigaHimpunan();
     }
-    cout << "----------------------------------------------\n" <<
-            "  TERIMA KASIH TELAH MENGGUNAKAN PROGRAM INI  \n" <<
-            "----------------------------------------------\n" << 
+    cout << "\n--------------------------------------------------\n" <<
+            "    TERIMA KASIH TELAH MENGGUNAKAN PROGRAM INI    \n" <<
+            "--------------------------------------------------\n" << 
             " CREATOR : \n" <<
             " 1. Pradipa Rasyad              (NIM : 123260108)\n" <<
             " 2. Anargya Fahmi 'Ilmi Nugraha (NIM : 123260133)\n" <<
