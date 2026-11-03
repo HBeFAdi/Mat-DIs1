@@ -273,5 +273,5 @@ int main(){
             " 1. Pradipa Rasyad              (NIM : 123260108)\n" <<
             " 2. Anargya Fahmi 'Ilmi Nugraha (NIM : 123260133)\n" <<
             " 3. Afnan Ario Wicaksonoo       (NIM : 123260135)\n" <<
-            " 4. Arjuna Baharudin Zahir      (NIM : 1223260098)\n";
+            " 4. Arjuna Baharudin Zahir      (NIM : 123260098)\n";
 }
