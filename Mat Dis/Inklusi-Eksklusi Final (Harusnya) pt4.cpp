@@ -27,7 +27,7 @@ ll kpk(ll a, ll b){
     return (hasil > 2147483648LL ? 2147483648LL : hasil);
 }
 
-int JumlahHabisBagi(int p){
+int JumlahHabisBagi(ll p){
     return (akhir / p) - ((awal - 1) / p);
 }
 
@@ -51,15 +51,15 @@ void Permisalan(int n){
     cout << "\nMisalkan : \n";
     for (int i = 0; i < n; i++){
         cout << "  " << (char)('A'+i) << " = "; getline(cin, misal[i]);
-    } 
+    }
 }
 
 void JawabanHimpunan(vector<string> nama, vector<int> v, int banyak){
-    int ke = 0, cari = -1;
+    int cari, ke = 0;
     vector<string> blmDiket;
     vector<int> jawab;
     cout << "\nYang belum diketahui : \n";
-    for (int i = 0; i < (int)nama.size(); i++){
+    for (int i = 0; i < (int)v.size(); i++){
         if (v[i] == -1){
             ke++;
             banyak == 2 ? jawab.pb(hasil2himpunan[i]) : jawab.pb(hasil3himpunan[i]);
@@ -89,7 +89,7 @@ void Hitung2Himpunan(vector<int> v){
         if (!ada(AuB)){                                     // Mencari A u B
             if (ada(A, B, AnB)) AuB = A + B - AnB;
             else if (ada(N, AuBc)) AuB = N - AuBc;
-        }   
+        }
         if (!ada(AuBc) && ada(N, AuB)) AuBc = N - AuB;      // Mencari (A u B) ^c
         if (!ada(hA)){                                      // Mencari hanya A
             if (ada(A, AnB)) hA = A - AnB;
@@ -190,8 +190,8 @@ void HabiDibagi(int banyak){
     vector<int> v;
     int opsi, subopsi, jawab;
 
-    awal = InputValid("\nMasukan angka batas bawah : ","Input tidak valid. Harus lebih dari nol!", 1, maxint);
-    akhir = InputValid("Masukan angka batas atas : ","Input tidak valid. Harus lebih dari batas bawah!", awal, maxint);
+    awal = InputValid("\nMasukan bilangan batas bawah : ","Input tidak valid. Harus lebih dari nol!", 1, maxint);
+    akhir = InputValid("Masukan bilangan batas atas  : ","Input tidak valid. Harus lebih dari batas bawah!", awal, maxint);
 
     if (banyak == 2){
         cout << "\nManakah Opsi dibawah ini yang ditanyakan di soal?\n" <<
@@ -210,7 +210,7 @@ void HabiDibagi(int banyak){
     if (banyak == 3 || opsi <= 2) subopsi = InputValid("Pilih 1(Dan) / 2(Atau) : ","Input tidak valid karena diluar pilihan!", 1, 2);
 
     cout << endl;
-    for (int i = 0; i < banyak; i++) p.pb(InputValid("Angka Pembagi ke-" + to_string(i+1) + " : ","Input tidak valid. Masukkan bilangan bulat >= 1", 1, maxint));
+    for (int i = 0; i < banyak; i++) p.pb(InputValid("Bilangan Pembagi ke-" + to_string(i+1) + " : ","Input tidak valid. Masukkan bilangan bulat >= 1", 1, maxint));
 
     // N, A, B kita masukan ke vector v terlebih dahulu karena baik 2 atau 3 himpunan memiliki ketiga variabel tersebut
     // di index yang sama yaitu (0, 1, 2).
@@ -231,7 +231,7 @@ void HabiDibagi(int banyak){
             case 2 : subopsi == 1 ? jawab = N - AnB : jawab = AuBc; break;
             case 3 : jawab = hA; break;
             case 4 : jawab = Xor; break;
-        } 
+        }
     } else {
         const int &N = h3[0], &A = h3[1], &B = h3[2], &AnB = h3[4], &AnC = h3[5], &BnC = h3[6], &AnBnC = h3[7];
         const int &AuBuC = h3[8], &AuBuCc = h3[9], &hA = h3[10];
@@ -271,6 +271,7 @@ int main(){
 
         int soalrentang = InputValid("\nApakah soal termasuk soal habis dibagi? 1(Ya)/2(Tidak) : ", "Input tidak valid karena diluar pilihan!", 1, 2);
         int banyak = InputValid("Berapa jumlah himpunan di soal? (2/3) : ", "Input tidak valid karena diluar pilihan!", 2, 3);
+
         if (soalrentang == 1) HabiDibagi(banyak);
         else if (banyak == 2) DuaHimpunan();
         else TigaHimpunan();
