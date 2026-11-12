@@ -33,15 +33,19 @@ ll fpb(ll a, ll b){
 
 ll kpk(ll a, ll b){
     ll hasil = a / fpb(a,b) * b;
-    return (hasil > 2147483648LL ? 2147483648LL : hasil);
+    if (hasil > 2147483648LL) return 2147483648LL;
+    else return hasil;
 }
 
 int JumlahHabisBagi(ll p){
-    return (akhir / p) - ((awal - 1) / p);
+    int hasil;
+    hasil = (akhir / p) - ((awal - 1) / p);
+    return hasil;
 }
 
 bool ada(int a, int b=0, int c=0, int d=0, int e=0, int f=0, int g=0, int h=0){
-    return (a != -1 && b != -1 && c != -1 && d != -1 && e != -1 && f != -1 && g != -1 && h != -1);
+    bool kondisi = a != -1 && b != -1 && c != -1 && d != -1 && e != -1 && f != -1 && g != -1 && h != -1;
+    return kondisi;
 }
 
 int InputValid(string kalimat, string error, int a, int b){
@@ -57,14 +61,6 @@ int InputValid(string kalimat, string error, int a, int b){
     return x;
 }
 
-void Permisalan(int n){
-    vector<string> misal(n);
-    cout << "\nMisalkan : \n";
-    for (int i = 0; i < n; i++){
-        cout << "  " << (char)('A'+i) << " = "; getline(cin >> ws, misal[i]);
-    }
-}
-
 string rumus(vector<string> variabel, vector<int> nilai, string opr){
     string r;
     for (int i = 0; i < (int)variabel.size(); i++) r += variabel[i] + " " + opr[i] + " ";
@@ -73,6 +69,14 @@ string rumus(vector<string> variabel, vector<int> nilai, string opr){
         if (i < (int)opr.size()) r += string(" ") + opr[i] + " ";
     }
     return r;
+}
+
+void Permisalan(int n){
+    vector<string> misal(n);
+    cout << "\nMisalkan : \n";
+    for (int i = 0; i < n; i++){
+        cout << "  " << (char)('A'+i) << " = "; getline(cin >> ws, misal[i]);
+    }
 }
 
 void JawabanHimpunan(vector<string> nama, vector<int> v, int banyak){
