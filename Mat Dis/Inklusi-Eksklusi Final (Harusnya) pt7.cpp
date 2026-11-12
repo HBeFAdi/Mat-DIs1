@@ -20,7 +20,7 @@ using namespace std;
 int awal, akhir;
 vector<int> hasil2himpunan (9);
 vector<int> hasil3himpunan (15);
-vector<vector<string>> cara;
+vector<vector<string>> cara; // Vector 2D
 
 ll fpb(ll a, ll b){
     while(b != 0){
@@ -76,7 +76,7 @@ string rumus(vector<string> variabel, vector<int> nilai, string opr){
 }
 
 void JawabanHimpunan(vector<string> nama, vector<int> v, int banyak){
-    int langkah, cari = 1, ke = 0;
+    int langkah, cari, ke = 0;
     bool masihCari = true;
     const vector<int>& h2 = hasil2himpunan;
     const vector<int>& h3 = hasil3himpunan;
