@@ -61,7 +61,7 @@ void Permisalan(int n){
     vector<string> misal(n);
     cout << "\nMisalkan : \n";
     for (int i = 0; i < n; i++){
-        cout << "  " << (char)('A'+i) << " = "; getline(cin, misal[i]);
+        cout << "  " << (char)('A'+i) << " = "; getline(cin >> ws, misal[i]);
     }
 }
 
@@ -256,7 +256,7 @@ void TigaHimpunan(){
     JawabanHimpunan(nama, v, 3);
 }
 
-void HabiDibagi(int banyak){
+void HabisDibagi(int banyak){
     const vector<int>& h2 = hasil2himpunan;
     const vector<int>& h3 = hasil3himpunan;
     vector<int> p;
@@ -345,7 +345,7 @@ int main(){
         soalHB = InputValid("\nApakah soal termasuk soal habis dibagi? 1(Ya)/2(Tidak) : ", "Input tidak valid karena diluar pilihan!", 1, 2);
         if (soalHB == 1) {
             banyak = InputValid("Berapa jumlah angka pembagi di soal? (2/3) : ", "Input tidak valid karena diluar pilihan!", 2, 3);
-            HabiDibagi(banyak);
+            HabisDibagi(banyak);
         } else {
             banyak = InputValid("Berapa jumlah himpunan di soal? (2/3) : ", "Input tidak valid karena diluar pilihan!", 2, 3);
             if (banyak == 2) DuaHimpunan();
