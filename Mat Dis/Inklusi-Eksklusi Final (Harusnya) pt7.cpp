@@ -9,8 +9,8 @@
 #define nd second
 #define ts to_string
 #define pb push_back
-#define maxint numeric_limits<int>::max()
 #define ll long long
+#define maxint numeric_limits<int>::max()
 #define RESET "\033[0m"
 #define RED   "\033[31m"
 #define CYAN  "\033[36m"
